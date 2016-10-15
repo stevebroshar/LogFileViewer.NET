@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Log File Viewer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SRB")]
+[assembly: AssemblyCompany("SCB")]
 [assembly: AssemblyProduct("Log File Viewer")]
-[assembly: AssemblyCopyright("Copyright © SRB 2012")]
+[assembly: AssemblyCopyright("Copyright © SCB 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
