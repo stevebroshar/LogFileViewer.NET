@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using LogFileViewer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using System.Collections;
-using System.Linq;
 using Scb;
 
 namespace LogFileViewerUnitTest
