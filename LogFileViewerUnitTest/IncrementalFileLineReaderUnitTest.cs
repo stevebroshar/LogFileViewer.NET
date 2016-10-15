@@ -4,6 +4,8 @@ using LogFileViewer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Collections;
+using System.Linq;
+using Scb;
 
 namespace LogFileViewerUnitTest
 {
@@ -11,12 +13,6 @@ namespace LogFileViewerUnitTest
     public class IncrementalFileLineReaderUnitTest
     {
         private const string FilePath1 = "testfile1";
-
-        private static void StringListAssert(ICollection<string> expected, ICollection<string> actual)
-        {
-            string message = $"expected=<{string.Join(",", expected)}> actual=<{string.Join(",", actual)}>";
-            CollectionAssert.AreEqual((ICollection)expected, (ICollection)actual, message);
-        }
 
         [TestInitialize]
         public void TearDown()
@@ -26,7 +22,7 @@ namespace LogFileViewerUnitTest
         }
 
         [TestMethod]
-        public void ProcessUpdatesFiresNewLineForEachLineOfFile()
+        public void ProcessUpdates_FiresNewLine_ForEachLineOfFile()
         {
             var lines1 = new[] { "line", "line2", "line3" };
             File.WriteAllLines(FilePath1, lines1);
@@ -34,11 +30,11 @@ namespace LogFileViewerUnitTest
             var lines = new List<string>();
             reader.NewLine += (s, e) => lines.Add(e.Text);
             reader.ProcessUpdates();
-            StringListAssert(lines1, lines);
+            LoggableCollectionAssert.AreEqual(lines1, lines.ToArray());
         }
 
         [TestMethod]
-        public void ProcessUpdatesFiresNewLineForAddedLines()
+        public void ProcessUpdates_FiresNewLine_ForAddedLines()
         {
             File.WriteAllLines(FilePath1, new[] { "line" });
             var reader = new IncrementalFileLineReader(FilePath1);
@@ -51,11 +47,11 @@ namespace LogFileViewerUnitTest
             var lines = new List<string>();
             reader.NewLine += (s, e) => lines.Add(e.Text);
             reader.ProcessUpdates();
-            StringListAssert(new[] { "line2", "line3" }, lines);
+            LoggableCollectionAssert.AreEqual(new[] { "line2", "line3" }, lines.ToArray());
         }
 
         [TestMethod]
-        public void ProcessUpdatesIgnoresNonLineTerminatedText()
+        public void ProcessUpdates_IgnoresNonLineTerminatedText()
         {
             using (var writer = File.CreateText(FilePath1))
                 writer.Write("partial-line");
@@ -63,7 +59,7 @@ namespace LogFileViewerUnitTest
             var actualLines = new List<string>();
             reader.NewLine += (s, e) => actualLines.Add(e.Text);
             reader.ProcessUpdates();
-            StringListAssert(new string[0], actualLines);
+            LoggableCollectionAssert.AreEqual(new string[0], actualLines.ToArray());
         }
     }
 }

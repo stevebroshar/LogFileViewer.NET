@@ -56,7 +56,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExceptionAssert.cs" />
     <Compile Include="IncrementalFileLineReaderUnitTest.cs" />
+    <Compile Include="LoggableCollectionAssert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
