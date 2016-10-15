@@ -23,8 +23,7 @@ namespace LogFileViewer
 
         private void FireNewLine(string text)
         {
-            if (NewLine != null)
-                NewLine(this, new NewLineEventArgs(text));
+            NewLine?.Invoke(this, new NewLineEventArgs(text));
         }
 
         public void ProcessUpdates()

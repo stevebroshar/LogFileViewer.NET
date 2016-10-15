@@ -14,7 +14,7 @@ namespace LogFileViewerUnitTest
 
         private static void StringListAssert(ICollection<string> expected, ICollection<string> actual)
         {
-            string message = string.Format("expected=<{0}> actual=<{1}>", string.Join(",", expected), string.Join(",", actual));
+            string message = $"expected=<{string.Join(",", expected)}> actual=<{string.Join(",", actual)}>";
             CollectionAssert.AreEqual((ICollection)expected, (ICollection)actual, message);
         }
 
@@ -31,7 +31,7 @@ namespace LogFileViewerUnitTest
             var lines1 = new[] { "line", "line2", "line3" };
             File.WriteAllLines(FilePath1, lines1);
             var reader = new IncrementalFileLineReader(FilePath1);
-            var lines = new List<String>();
+            var lines = new List<string>();
             reader.NewLine += (s, e) => lines.Add(e.Text);
             reader.ProcessUpdates();
             StringListAssert(lines1, lines);
@@ -48,7 +48,7 @@ namespace LogFileViewerUnitTest
                 writer.WriteLine("line2");
                 writer.WriteLine("line3");
             }
-            var lines = new List<String>();
+            var lines = new List<string>();
             reader.NewLine += (s, e) => lines.Add(e.Text);
             reader.ProcessUpdates();
             StringListAssert(new[] { "line2", "line3" }, lines);
@@ -60,7 +60,7 @@ namespace LogFileViewerUnitTest
             using (var writer = File.CreateText(FilePath1))
                 writer.Write("partial-line");
             var reader = new IncrementalFileLineReader(FilePath1);
-            var actualLines = new List<String>();
+            var actualLines = new List<string>();
             reader.NewLine += (s, e) => actualLines.Add(e.Text);
             reader.ProcessUpdates();
             StringListAssert(new string[0], actualLines);
