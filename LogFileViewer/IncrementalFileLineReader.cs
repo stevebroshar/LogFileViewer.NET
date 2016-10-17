@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace LogFileViewer
+namespace Scb
 {
     public class NewLineEventArgs : EventArgs 
     {

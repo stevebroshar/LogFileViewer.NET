@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using LogFileViewer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Scb;

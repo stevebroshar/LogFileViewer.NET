@@ -1,4 +1,4 @@
-﻿namespace LogFileViewer
+﻿namespace Scb
 {
     partial class Form1
     {

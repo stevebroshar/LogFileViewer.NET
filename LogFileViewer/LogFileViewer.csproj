@@ -8,7 +8,7 @@
     <ProjectGuid>{5435A674-8DAB-4783-8736-96309523A211}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogFileViewer</RootNamespace>
+    <RootNamespace>Scb</RootNamespace>
     <AssemblyName>LogFileViewer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <TargetFrameworkProfile>
